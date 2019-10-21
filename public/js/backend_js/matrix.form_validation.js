@@ -1,6 +1,25 @@
 
 $(document).ready(function(){
-	
+    $("#new_pwd").click(function() {
+        var current_pwd=$("#current_pwd").val();
+        $.ajax({
+           type:'get',
+           url:'/admin/chk-Pwd',
+            data:{current_pwd:current_pwd},
+            success:function (resp) {
+                if(resp == "false")
+                    $("#chkPwd").html("<font color='red'>Current Password is incorrect</font>");
+                else
+                    $("#chkPwd").html("<font color='green'>Current Password is correct</font>");
+            },
+            error:function () {
+                alert('Error');
+            }
+
+        });
+
+    });
+
 	$('input[type=checkbox],input[type=radio],input[type=file]').uniform();
 	
 	$('select').select2();
@@ -63,16 +82,21 @@ $(document).ready(function(){
 	
 	$("#password_validate").validate({
 		rules:{
-			pwd:{
+            current_pwd:{
+                required: true,
+                minlength:6,
+                maxlength:20
+            },
+			new_pwd:{
 				required: true,
 				minlength:6,
 				maxlength:20
 			},
-			pwd2:{
+			confirm_pwd:{
 				required:true,
 				minlength:6,
 				maxlength:20,
-				equalTo:"#pwd"
+				equalTo:"#new_pwd"
 			}
 		},
 		errorClass: "help-inline",
