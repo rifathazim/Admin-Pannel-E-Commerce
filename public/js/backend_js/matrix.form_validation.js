@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-    $("#new_pwd").click(function() {
+    $("#current_pwd").keyup(function() {
         var current_pwd=$("#current_pwd").val();
         $.ajax({
            type:'get',
@@ -21,9 +21,9 @@ $(document).ready(function(){
     });
 
 	$('input[type=checkbox],input[type=radio],input[type=file]').uniform();
-	
+
 	$('select').select2();
-	
+
 	// Form Validation
     $("#basic_validate").validate({
 		rules:{
@@ -53,7 +53,7 @@ $(document).ready(function(){
 			$(element).parents('.control-group').addClass('success');
 		}
 	});
-	
+
 	$("#number_validate").validate({
 		rules:{
 			min:{
@@ -79,7 +79,7 @@ $(document).ready(function(){
 			$(element).parents('.control-group').addClass('success');
 		}
 	});
-	
+
 	$("#password_validate").validate({
 		rules:{
             current_pwd:{
